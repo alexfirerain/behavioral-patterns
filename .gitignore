@@ -1,0 +1,4 @@
+# Project exclude paths
+/.gradle/
+/endless-iterator/build/
+/endless-iterator/build/classes/java/main/

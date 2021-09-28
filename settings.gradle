@@ -1,0 +1,4 @@
+rootProject.name = 'behavioral-patterns'
+include 'endless-iterator'
+include 'frog-commands'
+
