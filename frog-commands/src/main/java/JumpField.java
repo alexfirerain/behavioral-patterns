@@ -2,10 +2,8 @@ import java.util.Arrays;
 
 public class JumpField {
     private final int MIN_POSITION, MAX_POSITION;
-
+    private final char[] BLANK_FIELD;
     private final char frogSymbol;
-
-    public final char[] BLANK_FIELD;
 
     public JumpField(int min_position, int max_position, char frogSymbol) {
         this.frogSymbol = frogSymbol;

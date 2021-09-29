@@ -3,14 +3,26 @@ public class Frog {
 
     protected int position;
 
-    public Frog(int min_position, int max_position, int position) {
-        field = new JumpField(min_position, max_position, 'O');
+    public Frog(int min_position, int max_position, int position, char frogSymbol) {
+        field = new JumpField(min_position, max_position, frogSymbol);
         this.position = position;
     }
 
     public boolean jump(int steps) {
-        return false;
+        int target = position + steps;
+        if (field.isOutOfRange(target)) {
+            if (steps > 0) {
+                field.rightOutError(position);
+            } else {
+                field.leftOutError(position);
+            }
+            return false;
+        }
+        position = target;
+        draw();
+        return true;
     }
+
     public void draw() {
         field.showField(position);
     }
