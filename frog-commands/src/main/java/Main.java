@@ -3,11 +3,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-
+    public static final int MIN_POSITION = 0;
+    public static final int MAX_POSITION = 10;
+    public static final int POSITION = 5;
+    public static final char FROG_SYMBOL = '@';
 
     public static void main(String[] args) {
-        //
-        Frog frog = new Frog(0, 10, 5, '@');
+        Frog frog = new Frog(MIN_POSITION, MAX_POSITION, POSITION, FROG_SYMBOL);
         Scanner gamer = new Scanner(System.in);
         List<FrogCommand> history = new ArrayList<>();
         int curCommand = -1;
@@ -23,11 +25,10 @@ public class Main {
                 \t!! = повтор последнего выполненного действия
                 \t 0 = прыжок на месте → завершение игры""");
         while (true) {
-            //считываем ввод и конструируем команду, если
-            //пользователь не хотел выйти
+            // считываем ввод
             String input = gamer.nextLine();
-
-            if (input.equals("0")) break;
+            // если пользователь хотел выйти, выходим
+            if ("0".equals(input)) break;
 
             switch (input) {
                 case "<<":
@@ -54,14 +55,17 @@ public class Main {
                             history.subList(curCommand + 1, history.size()).clear();
                         //делаем новую команду из предыдущей
                         FrogCommand cmd = history.get(curCommand);
+                        // если выполнима
                         if (cmd.doIt()) {
+                            // добавим в историю
                             history.add(cmd);
+                            // и продвинем указатель
                             curCommand++;
                         }
                     }
                     break;
                 default:  //пользователь ввёл новое движение для лягушки
-                    if (!(input.startsWith("+") || input.startsWith("-"))) {
+                    if (!input.startsWith("+") && !input.startsWith("-")) {
                         System.out.println("ква ква");
                         continue;
                     }
