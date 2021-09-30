@@ -3,9 +3,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static final int MIN_POSITION = 0;
+    public static final int MIN_POSITION = -5;
     public static final int MAX_POSITION = 10;
-    public static final int POSITION = 5;
+    public static final int POSITION = 8;
     public static final char FROG_SYMBOL = '@';
 
     public static void main(String[] args) {
@@ -31,6 +31,7 @@ public class Main {
             if ("0".equals(input)) break;
 
             switch (input) {
+
                 case "<<":
                     if (curCommand < 0) {
                         System.out.println("Нечего отменять!");
@@ -38,6 +39,7 @@ public class Main {
                     } else
                         history.get(curCommand--).undoIt();
                     break;
+
                 case ">>":
                     if (curCommand == history.size() - 1) {
                         System.out.println("Нечего возвращать!");
@@ -45,6 +47,7 @@ public class Main {
                     } else
                         history.get(++curCommand).doIt();
                     break;
+
                 case "!!":
                     if (curCommand < 0) {
                         System.out.println("Нечего повторять!");
@@ -64,6 +67,7 @@ public class Main {
                         }
                     }
                     break;
+
                 default:  //пользователь ввёл новое движение для лягушки
                     if (!input.startsWith("+") && !input.startsWith("-")) {
                         System.out.println("ква ква");
@@ -91,7 +95,6 @@ public class Main {
                     }
                     break;
             }
-
         }
         System.out.println("Прощаемся с Лягушкой, спасибо за тренировку!");
     }
