@@ -1,10 +1,22 @@
 import java.util.Arrays;
 
+/**
+ * Игровое Прыжковое Поле, предназначенное для прыжков Лягушки в одном измерении.
+ */
 public class JumpField {
     private final int MIN_POSITION, MAX_POSITION;
+    /**
+     * Шаблон отображения пустого Поля без Лягушки.
+     */
     private final char[] BLANK_FIELD;
     private final char frogSymbol;
 
+    /**
+     * Новое Прыжковое Поле для Лягушки.
+     * @param min_position координата крайне левого поля.
+     * @param max_position координата крайне правого поля.
+     * @param frogSymbol   {@code char}, представляющий Лягушку на Поле.
+     */
     public JumpField(int min_position, int max_position, char frogSymbol) {
         this.frogSymbol = frogSymbol;
         MIN_POSITION = Math.min(min_position, max_position);
@@ -18,19 +30,20 @@ public class JumpField {
         Arrays.fill(BLANK_FIELD, 2, FIELD_SPAN + 2, '_');
     }
 
-    public static void main(String[] args) {
-        JumpField jf = new JumpField(0, 10, 'O' );
-        System.out.println(jf.BLANK_FIELD );
-        jf.showField(5);
-        jf.leftOutError(5);
-        jf.rightOutError(5);
-    }
-
+    /**
+     * Отрисовывает текущую игровую ситуацию на Поле.
+     * @param position клетка, на которой находится Лягушка.
+     */
     public void showField(int position) {
         char[] output = Arrays.copyOf(BLANK_FIELD, BLANK_FIELD.length);
         output[position - MIN_POSITION + 2] = frogSymbol;
         System.out.println(output);
     }
+
+    /**
+     * Отрисовывает текущую игровую ситуацию на Поле при попытке недопустимого хода за левую границу.
+     * @param position координата клетки, на которой остаётся Лягушка после предыдущего хода.
+     */
     public void leftOutError(int position) {
         char[] output = Arrays.copyOf(BLANK_FIELD, BLANK_FIELD.length);
         output[position - MIN_POSITION + 2] = frogSymbol;
@@ -38,6 +51,11 @@ public class JumpField {
         System.out.println("Недопустимый ход!");
         System.out.println(output);
     }
+
+    /**
+     * Отрисовывает текущую игровую ситуацию на Поле при попытке недопустимого хода за правую границу.
+     * @param position координата клетки, на которой остаётся Лягушка после предыдущего хода.
+     */
     public void rightOutError(int position) {
         char[] output = Arrays.copyOf(BLANK_FIELD, BLANK_FIELD.length);
         output[position - MIN_POSITION + 2] = frogSymbol;
@@ -45,6 +63,13 @@ public class JumpField {
         System.out.println("Недопустимый ход!");
         System.out.println(output);
     }
+
+    /**
+     * Проверяет, относится ли запрашиваемая координата к пространству игрового По́ля.
+     * @param target координата клетки, на которую предполагается делать ход.
+     * @return {@code true}, если координата находится в пределах По́ля.
+     *         {@code false}, если координата находится за границами По́ля.
+     */
     public boolean isOutOfRange(int target) {
         return target < MIN_POSITION || target > MAX_POSITION;
     }

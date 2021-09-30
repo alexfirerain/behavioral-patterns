@@ -3,9 +3,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static final int MIN_POSITION = -5;
+    public static final int MIN_POSITION = 0;
     public static final int MAX_POSITION = 10;
-    public static final int POSITION = 8;
+    public static final int POSITION = 5;
     public static final char FROG_SYMBOL = '@';
 
     public static void main(String[] args) {
@@ -27,7 +27,7 @@ public class Main {
         while (true) {
             // считываем ввод
             String input = gamer.nextLine();
-            // если пользователь хотел выйти, выходим
+            // если пользователь желает выйти, выходим
             if ("0".equals(input)) break;
 
             switch (input) {
